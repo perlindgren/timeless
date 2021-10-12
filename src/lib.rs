@@ -1,8 +1,10 @@
+#![no_std]
 mod instant;
-use instant::*;
+pub use instant::*;
 
-pub trait Clock {
-    fn now(&self) -> Instant;
+pub trait Clock<const F: u32> {
+    type P;
+    fn now(&self) -> Instant<i32, Self::P>;
 }
 
 #[derive(Debug)]
